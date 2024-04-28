@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meow Meow</title>
+<style>
+  body {
+    background-color: #000; /* Black background */
+    color: #fff; /* Text color */
+    font-family: Arial, sans-serif; /* Font family */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh; /* Full viewport height */
+  }
+
+  .rectangle1 {
+    width: calc(25% - 25px); /* 50% width minus total horizontal padding */
+    height: calc(105vh - 80px); /* 50% height minus total vertical padding */
+    background-color: #202020; /* Dark gray */
+    border-radius: 10px; /* Padded corners */
+    margin: 10px; /* Add spacing between rectangles */
+    padding: 20px; /* Add padding inside rectangles */
+    box-sizing: border-box; /* Include padding in width and height */
+    position: relative; /* Position relative for absolute positioning of search box and icon */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange items vertically */
+    justify-content: flex-start; /* Align items at the top */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .welcome-text {
+    color: #fff; /* Text color */
+    position: absolute; /* Absolute positioning for welcome text */
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+  }
+
+  .search-box {
+    width: 95%;
+    background-color: #141414;
+    left: 5px;
+    border-radius: 20px;
+    padding: 10px;
+    align-items: center;
+    box-sizing: border-box;
+    position: absolute;
+    display: flex;
+  }
+
+  .search-box input[type="text"] {
+    width: calc(105% - 45px);
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    margin-left: auto;
+    border-radius: 20px;
+  }
+
+  .dropdown-content {
+    display: none;
+    width: 90%;
+    position: absolute;
+    background-color: #4c4c4c;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 2;
+    top: 55px; /* Adjust this value as needed */
+  }
+
+  .dropdown-content a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #3c3c3c;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .search-icon {
+    color: #fff; /* Icon color */
+    position: absolute; /* Absolute positioning to place icon inside search box */
+    left: 10px; /* Adjust icon position from left */
+    font-size: 90%; /* Scale down icon size by 90% */
+    top: 50%; /* Center icon vertically */
+    transform: translateY(-50%); /* Center icon vertically */
+  }
+
+  .Home{
+  padding: 20px;
+  color : rgb(0, 255, 217);
+  top: 105px;
+  left: 20px;
+  position: absolute;
+  font-size : 25px;
+  font-family: "Barriecito", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  z-index: 1;
+}
+  .inner-rectangle {
+  width: 22%;
+  height: 8%;
+  top: 110px;
+  left: 21px;
+  position:absolute;
+  background-color: #333; /* Adjust color as needed */
+  border-radius: 5px; /* Add border radius */
+  /* Additional styling */
+}
+
+.inner-rectangle2 {
+  width: 22%;
+  height: 63%;
+  top: 178px;
+  left: 21px;
+  position:absolute;
+  background-color: #333; /* Adjust color as needed */
+  border-radius: 5px; /* Add border radius */
+  /* Additional styling */
+}
+
+  .rectangle2 {
+    width: calc(75% - 25px);
+    height: calc(105vh - 80px);
+    background-color: #252525;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 0px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end; /* Align items to the right */
+    overflow: hidden; /* Ensure icon doesn't overflow */
+}
+
+.greeting {
+    color: #fff; /* Text color */
+    position: absolute; /* Absolute positioning for greeting message */
+    top: 10px; /* Distance from the top */
+    right: 10px; /* Distance from the right */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 5px 10px; /* Add padding */
+    border-radius: 5px; /* Rounded corners */
+  }
+
+.picture {
+    width: 350px;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    opacity: 0.5; /* Set initial opacity to 70% */
+    mix-blend-mode: lighten;
+}
+
+.welcome-text{
+  padding: 20px;
+  color : rgb(0, 255, 217);
+  font-size : 25px;
+  font-family: "Protest Revolution", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.rectangle3 {
+  width: calc(100% - 25px);
+  height: calc(21% - 80px);
+  background-color: #252525;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 0px;
+  box-sizing: border-box;
+  position: absolute; /* Change from relative to absolute */
+  top: 650px; /* Adjust the top position as needed */
+  overflow: hidden;
+  z-index: 2; /* Set a higher z-index to overlay above other elements */
+}
+
+.audio-player {
+  text-align: center; /* Center content */
+  bottom: 5px;
+  padding: 20px; /* Add padding */
+  }
+
+audio {
+  margin-bottom: 20px; /* Add spacing between audio player and progress bar */
+  }
+
+  .playbutton {
+  position: absolute;
+  bottom: 25px; /* Adjust the bottom position as needed */
+  right: 600px;
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+
+
+.progress_bar {
+  position: absolute;
+  bottom:10px;
+  right: 350px;
+  height: 10px;
+  width: 500px;
+  background-color: #4c4c4c;
+  margin: 0 auto; /* Center progress bar */
+  }
+
+.progressed {
+  height: 10px;
+  background-color: rgb(255, 255, 255);
+  width: 0%;
+  transition: all 1s;
+  position: relative;
+  }
+
+
+</style>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+<script>
+ function showDropdown(inputValue) {
+  const dropdownContent = document.getElementById("dropdown-content");
+  const dropdownOptions = dropdownContent.getElementsByTagName("a");
+
+  // Hide all dropdown options initially
+  for (let option of dropdownOptions) {
+    option.style.display = "none";
+  }
+
+  let count = 0; // Initialize count to keep track of displayed options
+
+  // Show up to 5 dropdown options that match the input value
+  for (let option of dropdownOptions) {
+    if (option.textContent.toLowerCase().includes(inputValue.toLowerCase())) {
+      option.style.display = "block";
+      count++;
+
+      // If count reaches 5, stop displaying more options
+      if (count >= 5) {
+        break;
+      }
+    }
+  }
+
+  // Show or hide the dropdown based on input value
+  if (inputValue.trim() !== "") {
+    dropdownContent.classList.add("show");
+  } else {
+    dropdownContent.classList.remove("show");
+  }
+}
+
+</script>
+</head>
+<body>
+  
+  <div class="rectangle1">
+    <div class="search-box">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" placeholder="Type something..." oninput="showDropdown(this.value)">
+      <div class="dropdown-content" id="dropdown-content">
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\10cc.html">10cc</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\50cent.html">50 cent</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\2Pac.html">2Pac</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Athousandhorses.html">A Thousand Horses</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\ABBA.html">ABBA</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\ABC.html">ABC</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Aerosmith.html">Aerosmith</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Agnetha Fältskog.html">Agnetha Fältskog</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\AlanJackson.html">Alan Jackson</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\AlbertKing.html">Albert King</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\AliceCooper.html">Alice Cooper</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\AlisonKrauss.html">Alison Krauss</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\TheAllAmericanRejects.html">The All-American Rejects</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\The Allman Brothers Band.html">The Allman Brothers Band</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Amy Winehouse.html">Amy Winehouse</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Andre Rieu.html">Andre Rieu</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Andrea Bocelli.html">Andrea Bocelli</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Andrew W.K.html">Andrew W.K.</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Antrax.html">Anthrax</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Antonio Carlos Jobim.html">Antonio Carlos Jobim</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\Apache Indian.html">Apache Indian</a>
+        <a href="C:\Users\jason\OneDrive\Desktop\New folder\ArcadeFire.html">Arcade Fire</a>
+        <a href="#">Ariana Grande</a>
+        <a href="#">Arrested Development</a>
+        <a href="#">Ashley Campbell</a>
+        <a href="#">Astrud Gilberto</a>
+        <a href="#">Aswad</a>
+        <a href="#">Atlanta Rhythm Section</a>
+        <a href="#">Audioslave</a>
+        <a href="#">B.B. King</a>
+        <a href="#">Badfinger</a>
+        <a href="#">The Band</a>
+        <a href="#">Barclay James Harvest</a>
+        <a href="#">Barry White</a>
+        <a href="#">The Beach Boys</a>
+        <a href="#">Beastie Boys</a>
+        <a href="#">The Beatles</a>
+        <a href="#">Beck</a>
+        <a href="#">Bee Gees</a>
+        <a href="#">Belinda Carlisle</a>
+        <a href="#">Ben Harper</a>
+        <a href="#">Ben Howard</a>
+        <a href="#">Benny Andersson</a>
+        <a href="#">Big Country</a>
+        <a href="#">Big Star</a>
+        <a href="#">Bill Evans</a>
+        <a href="#">Billie Eilish</a>
+        <a href="#">Billie Holiday</a>
+        <a href="#">Billy Currington</a>
+        <a href="#">Billy Fury</a>
+        <a href="#">Billy Preston</a>
+        <a href="#">Björk</a>
+        <a href="#">Black Eyed Peas</a>
+        <a href="#">Black Sabbath</a>
+        <a href="#">Black Uhuru</a>
+        <a href="#">Blind Faith</a>
+        <a href="#">Blink-182</a>
+        <a href="#">Blondie</a>
+        <a href="#">Blue Cheer</a>
+        <a href="#">Bo Diddley</a>
+        <a href="#">Bob Dylan</a>
+        <a href="#">Bob Marley</a>
+        <a href="#">Bob Seger</a>
+        <a href="#">Bon Jovi</a>
+        <a href="#">Bonnie Raitt</a>
+        <a href="#">Booker T</a>
+        <a href="#">Boyz II Men</a>
+        <a href="#">Brantley Gilbert</a>
+        <a href="#">Brenda Holloway</a>
+        <a href="#">Brian Eno</a>
+        <a href="#">The Brothers Johnson</a>
+        <a href="#">Bruce Springsteen</a>
+        <a href="#">Bryan Adams</a>
+        <a href="#">Bryan Ferry</a>
+        <a href="#">Buddy Guy</a>
+        <a href="#">Buddy Holly</a>
+        <a href="#">Burning Spear</a>
+        <a href="#">Burt Bacharach</a>
+        <a href="#">The Cadillac Three</a>
+        <a href="#">Camel</a>
+        <a href="#">Canned Heat</a>
+        <a href="#">Captain Beefheart</a>
+        <a href="#">Caravan</a>
+        <a href="#">Carpenters</a>
+        <a href="#">Carrie Underwood</a>
+        <a href="#">Cat Stevens</a>
+        <a href="#">Charlie Parker</a>
+        <a href="#">Cheap Trick</a>
+        <a href="#">The Chemical Brothers</a>
+        <a href="#">Cher</a>
+        <a href="#">Chris Cornell</a>
+        <a href="#">Chris Stapleton</a>
+        <a href="#">Chuck Berry</a>
+        <a href="#">Cinderella</a>
+        <a href="#">The Clash</a>
+        <a href="#">Climax Blues Band</a>
+        <a href="#">Coleman Hawkins</a>
+        <a href="#">Commodores</a>
+        <a href="#">Common</a>
+        <a href="#">The Common Linnets</a>
+        <a href="#">Corinne Bailey Rae</a>
+        <a href="#">Count Basie</a>
+        <a href="#">Counting Crows</a>
+        <a href="#">Craig Armstrong</a>
+        <a href="#">The Cranberries Cream</a>
+        <a href="#">Creedence Clearwater Revival</a>
+        <a href="#">Crowded House</a>
+        <a href="#">Culture Club</a>
+        <a href="#">The Cure</a>
+        <a href="#">Cutting Crew</a>
+        <a href="#">D’Angelo</a>
+        <a href="#">DMX</a>
+        <a href="#">The Damned</a>
+        <a href="#">Daniel Hope</a>
+        <a href="#">Danny Wilson & Gary Clark</a>
+        <a href="#">David Bowie</a>
+        <a href="#">Dean Martin</a>
+        <a href="#">Debarge</a>
+        <a href="#">Deep Purple</a>
+        <a href="#">Def Leppard</a>
+        <a href="#">Demi Lovato</a>
+        <a href="#">Demis Roussos</a>
+        <a href="#">Derek And The Dominos</a>
+        <a href="#">Desmond Dekker</a>
+        <a href="#">Diana Krall</a>
+        <a href="#">Diana Ross</a>
+        <a href="#">Diana Ross & The Supremes</a>
+        <a href="#">Dierks Bentley</a>
+        <a href="#">Dinah Washington</a>
+        <a href="#">Dio</a>
+        <a href="#">Dire Straits</a>
+        <a href="#">Disclosure</a>
+        <a href="#">Don Henley</a>
+        <a href="#">Donna Summer</a>
+        <a href="#">The Doors</a>
+        <a href="#">Dr Dre</a>
+        <a href="#">Drake</a>
+        <a href="#">Duke Ellington</a>
+        <a href="#">Dusty Springfield</a>
+        <a href="#">EELS</a>
+        <a href="#">EPMD</a>
+        <a href="#">Eagles</a>      
+        <a href="#">Eagles Of Death Metal</a>
+        <a href="#">Eazy-E</a>
+        <a href="#">Eddie Cochran</a>
+        <a href="#">Elbow</a>
+        <a href="#">Ella Fitzgerald</a>
+        <a href="#">Elliott Smith</a>
+        <a href="#">Elton John</a>
+        <a href="#">Elvis Costello</a>
+        <a href="#">Elvis Presley</a>
+        <a href="#">Emeli Sandé</a>
+        <a href="#">Eminem</a>
+        <a href="#">Enigma</a>
+        <a href="#">Eric B. & Rakim</a>
+        <a href="#">Eric Church</a>
+        <a href="#">Eric Clapton</a>
+        <a href="#">Etta James</a>
+        <a href="#">Evanescence</a>
+        <a href="#">Eve</a>
+        <a href="#">Extreme</a>
+        <a href="#">Fairport Convention</a>
+        <a href="#">Fats Domino</a>
+        <a href="#">Faust</a>
+        <a href="#">Fergie</a>
+        <a href="#">Fleetwood Mac</a>
+        <a href="#">Florence + The Machine</a>
+        <a href="#">The Flying Burrito Brothers</a>
+        <a href="#">Foo Fighters</a>
+        <a href="#">Four Tops</a>
+        <a href="#">Foxy Brown</a>
+        <a href="#">Frank Sinatra</a>
+        <a href="#">Frank Zappa</a>
+        <a href="#">Frankie Goes To Hollywood</a>
+        <a href="#">Freddie Mercury</a>
+        <a href="#">Free</a>
+        <a href="#">Frida Lyngstad</a>
+        <a href="#">The Game</a>
+        <a href="#">Gang Starr</a>
+        <a href="#">Gary Moore</a>
+        <a href="#">Gene Krupa</a>
+        <a href="#">Gene Vincent</a>
+        <a href="#">Genesis</a>
+        <a href="#">Gentle Giant</a>
+        <a href="#">George Benson</a>
+        <a href="#">George Harrison</a>
+        <a href="#">George Michael</a>
+        <a href="#">George Strait</a>
+        <a href="#">George Thorogood</a>
+        <a href="#">Georgie Fame</a>
+        <a href="#">Ghostface Killah</a>
+        <a href="#">Ginger Baker</a>
+        <a href="#">Glass Animals</a>
+        <a href="#">Glen Campbell</a>
+        <a href="#">The Go-Go’s</a>
+        <a href="#">Gong</a>
+        <a href="#">Grace Jones</a>
+        <a href="#">Graham Parker</a>
+        <a href="#">Grand Funk Railroad</a>
+        <a href="#">Gregory Isaacs</a>
+        <a href="#">Gregory Porter</a>
+        <a href="#">Guns N’ Roses</a>
+        <a href="#">Gwen Stefani</a>
+        <a href="#">Halsey</a>
+        <a href="#">Hank Williams</a>
+        <a href="#">Heart</a>
+        <a href="#">Heaven 17</a>
+        <a href="#">Helmet</a>
+        <a href="#">Herbie Hancock</a>
+        <a href="#">Hoobastank</a>
+        <a href="#">Howlin Wolf</a>
+        <a href="#">Hoyt Axton</a>
+        <a href="#">Huey Lewis & The News</a>
+        <a href="#">The Human League</a>
+        <a href="#">Humble Pie</a>
+        <a href="#">INXS</a>
+        <a href="#">Ice Cube</a>
+        <a href="#">Iggy Pop</a>
+        <a href="#">Imagine Dragons</a>
+        <a href="#">Iron Maiden</a>
+        <a href="#">Isaac Hayes</a>
+        <a href="#">The Isley Brothers</a>
+        <a href="#">It Bites</a>
+        <a href="#">J.J. Cale</a>
+        <a href="#">Jack Bruce</a>
+        <a href="#">Jack Johnson</a>
+        <a href="#">Jackson 5</a>
+        <a href="#">Jacques Brel</a>
+        <a href="#">Jadakiss</a>
+        <a href="#">The Jam</a>
+        <a href="#">James</a>
+        <a href="#">James Bay</a>
+        <a href="#">James Blake</a>
+        <a href="#">James Brown</a>
+        <a href="#">James Morrison</a>
+        <a href="#">James Taylor</a>
+        <a href="#">Jane’s Addiction</a>
+        <a href="#">Janet Jackson</a>
+        <a href="#">Japan & David Sylvian</a>
+        <a href="#">Jay-Z</a>
+        <a href="#">Jeezy</a>
+        <a href="#">Jeru the Damaja</a>
+        <a href="#">Jessie J</a>
+        <a href="#">Jimi Hendrix</a>
+        <a href="#">Jimmy Buffett</a>
+        <a href="#">Jimmy Cliff</a>
+        <a href="#">Jimmy Eat World</a>
+        <a href="#">Jimmy Ruffin</a>
+        <a href="#">Jimmy Smith</a>
+        <a href="#">Joan Armatrading</a>
+        <a href="#">Joan Baez</a>
+        <a href="#">Joe Cocker</a>
+        <a href="#">Joe Jackson</a>
+        <a href="#">Joe Sample</a>
+        <a href="#">Joe Walsh / The James Gang</a>
+        <a href="#">John Coltrane</a>
+        <a href="#">John Fogerty</a>
+        <a href="#">John Lee Hooker</a>
+        <a href="#">John Lennon</a>
+        <a href="#">John Martyn</a>
+        <a href="#">John Mayall</a>
+        <a href="#">John Mellencamp</a>
+        <a href="#">John Williams</a>
+        <a href="#">Johnny Cash</a>
+        <a href="#">Jhonny Gill</a>
+        <a href="#">Joni Mitchell</a>
+        <a href="#">Jonny Lang</a>
+        <a href="#">Joss Stone</a>
+        <a href="#">Jr. Walker & The All Stars</a>
+        <a href="#">Julie London</a>
+        <a href="#">Jurassic 5</a>
+        <a href="#">Justin Bieber</a>
+        <a href="#">Kacey Musgraves</a>
+        <a href="#">Kaiser Chiefs</a>
+        <a href="#">Kate Bush</a>
+        <a href="#">Katy Perry</a>
+        <a href="#">Keane</a>
+        <a href="#">Keith Jarrett</a>
+        <a href="#">Keith Richards</a>
+        <a href="#">Keith Urban</a>
+        <a href="#">Kendrick Lamar</a>
+        <a href="#">Kenny Burrell</a>
+        <a href="#">Kevin Coyne</a>
+        <a href="#">The Killers</a>
+        <a href="#">Killing Joke</a>
+        <a href="#">Kim Carnes</a>
+        <a href="#">The Kinks</a>
+        <a href="#">Kip Moore</a>
+        <a href="#">Kiss</a>
+        <a href="#">The Kooks</a>
+        <a href="#">Kool And The Gang</a>
+        <a href="#">LL Cool J</a>
+        <a href="#">Lady A</a>
+        <a href="#">Lady GaGa</a>
+        <a href="#">Lana Del Rey</a>
+        <a href="#">Laura Marling</a>
+        <a href="#">Led Zeppelin</a>
+        <a href="#">Lee ‘Scratch’ Perry</a>
+        <a href="#">Lenny Kravitz</a>
+        <a href="#">Leon Russell</a>
+        <a href="#">Lester Young</a>
+        <a href="#">Level 42</a>
+        <a href="#">The Libertines</a>
+        <a href="#">Lightnin’ Hopkins</a>
+        <a href="#">Lil Wayne</a>
+        <a href="#">Linton Kwesi Johnson</a>
+        <a href="#">Lionel Richie</a>
+        <a href="#">Little Big Town</a>
+        <a href="#">Little Richard</a>
+        <a href="#">Little Steven</a>
+        <a href="#">Lloyd Cole</a>
+        <a href="#">Lorde</a>
+        <a href="#">Louis Armstrong</a>
+        <a href="#">Lucinda Williams</a>
+        <a href="#">Ludacris</a>
+        <a href="#">Ludovico Einaudi</a>
+        <a href="#">Luke Bryan</a>
+        <a href="#">Lulu</a>
+        <a href="#">The Lumineers</a>
+        <a href="#">Lynyrd Skynyrd</a>
+        <a href="#">Maddie & Tae</a>
+        <a href="#">Madonna</a>
+        <a href="#">Magazine</a>
+        <a href="#">The Mamas & The Papas</a>
+        <a href="#">Marc Almond</a>
+        <a href="#">Marilyn Manson</a>
+        <a href="#">Mark Knopfler</a>
+        <a href="#">Maroon 5</a>
+        <a href="#">Martha Reeves & The Vandellas</a>
+        <a href="#">The Marvelettes</a>
+        <a href="#">Marvin Gaye</a>
+        <a href="#">Mary Hopkin</a>
+        <a href="#">Mary J. Blige</a>
+        <a href="#">Mary Wells</a>
+        <a href="#">Massive Attack</a>
+        <a href="#">Master P</a>
+        <a href="#">The Mavericks</a>
+        <a href="#">Maxi Priest</a>
+        <a href="#">McCoy Tyner</a>
+        <a href="#">Meat Loaf</a>
+        <a href="#">Megadeth</a>
+        <a href="#">Melody Gardot</a>
+        <a href="#">Metallica</a>
+        <a href="#">Method Man</a>
+        <a href="#">Michael Jackson</a>
+        <a href="#">Michael Kiwanuka</a>
+        <a href="#">Michael Nyman</a>
+        <a href="#">Mike & the Mechanics</a>
+        <a href="#">Mike Oldfield</a>
+        <a href="#">Miles Davis</a>
+        <a href="#">Minnie Riperton</a>
+        <a href="#">The Moody Blues</a>
+        <a href="#">Morrissey</a>
+        <a href="#">Motörhead</a>
+        <a href="#">Muddy Waters</a>
+        <a href="#">Mumford & Sons</a>
+        <a href="#">Mötley Crüe</a>
+        <a href="#">N.W.A</a>
+        <a href="#">Nanci Griffith</a>
+        <a href="#">Nas</a>
+        <a href="#">Nat King Cole</a>
+        <a href="#">Nazareth</a>
+        <a href="#">Ne-Yo</a>
+        <a href="#">Neil Diamond</a>
+        <a href="#">Neil Young</a>
+        <a href="#">Nelly</a>
+        <a href="#">Neneh Cherry</a>
+        <a href="#">New Edition</a>
+        <a href="#">New York Dolls</a>
+        <a href="#">Nick Drake</a>
+        <a href="#">Nicki Minaj</a>
+        <a href="#">Nik Kershaw</a>
+        <a href="#">Nina Simone</a>
+        <a href="#">Nine Inch Nails</a>
+        <a href="#">Nirvana</a>
+        <a href="#">The Nitty Gritty Dirt Band</a>
+        <a href="#">No Doubt</a>
+        <a href="#">Norah Jones</a>
+        <a href="#">OMD</a>
+        <a href="#">Ocean Colour Scene</a>
+        <a href="#">OneRepublic</a>
+        <a href="#">Onyx</a>
+        <a href="#">Oscar Peterson</a>
+        <a href="#">Otis Redding</a>
+        <a href="#">The Ozark Mountain Daredevils</a>
+        <a href="#">PJ Harvey</a>
+        <a href="#">Papa Roach</a>
+        <a href="#">Pat Benatar</a>
+        <a href="#">Pato Banton</a>
+        <a href="#">Patsy Cline</a>
+        <a href="#">Patty Griffin</a>
+        <a href="#">Paul McCartney and Wings</a>
+        <a href="#">Paul Simon</a>
+        <a href="#">Paul Weller</a>
+        <a href="#">Peaches & Herb</a>
+        <a href="#">Pearl Jam</a>
+        <a href="#">Peggy Lee</a>
+        <a href="#">Pete Townshend</a>
+        <a href="#">Peter Frampton</a>
+        <a href="#">Phil Collins</a>
+        <a href="#">Phil Manzanera</a>
+        <a href="#">PiL (Public Image Ltd)</a>
+        <a href="#">Pink Floyd</a>
+        <a href="#">Placebo</a>
+        <a href="#">Poco</a>
+        <a href="#">Posion</a>
+        <a href="#">The Police</a>
+        <a href="#">Portishead</a>
+        <a href="#">Prince</a>
+        <a href="#">Public Enemy</a>
+        <a href="#">Pulp</a>
+        <a href="#">Queen</a>
+        <a href="#">Queens Of The Stone Age</a>
+        <a href="#">Quicksilver Messenger Service</a>
+        <a href="#">Quincy Jones</a>
+        <a href="#">R.E.M.</a>
+        <a href="#">Rainbow</a>
+        <a href="#">Rammstein</a>
+        <a href="#">Ray Charles</a>
+        <a href="#">Reba McEntire</a>
+        <a href="#">Red Hot Chili Peppers</a>
+        <a href="#">Redman</a>
+        <a href="#">Richie Havens</a>
+        <a href="#">Rick James</a>
+        <a href="#">Rick Nelson</a>
+        <a href="#">Rick Ross</a>
+        <a href="#">Rick Wakeman</a>
+        <a href="#">The Righteous Brothers</a>
+        <a href="#">Rihanna</a>
+        <a href="#">Ringo Starr</a>
+        <a href="#">Rise Against</a>
+        <a href="#">Rob Zombie</a>
+        <a href="#">Robbie Williams</a>
+        <a href="#">Robert Cray</a>
+        <a href="#">Robert Glasper</a>
+        <a href="#">Robert Palmer</a>
+        <a href="#">Robert Plant</a>
+        <a href="#">Rod Stewart</a>
+        <a href="#">Roger Daltrey</a>
+        <a href="#">The Rolling Stones</a>
+        <a href="#">Ronnie Lane</a>
+        <a href="#">Ronnie Wood</a>
+        <a href="#">Rory Gallagher</a>
+        <a href="#">The Roots</a>
+        <a href="#">Rosanne Cash</a>
+        <a href="#">Roxy Music</a>
+        <a href="#">Roy Orbison</a>
+        <a href="#">Ruff Ryders</a>
+        <a href="#">Rufus Wainwright</a>
+        <a href="#">Rush</a>
+        <a href="#">The Ruts</a>
+        <a href="#">Saint Etienne</a>
+        <a href="#">Salt-n-Pepa</a>
+        <a href="#">Sam Cooke</a>
+        <a href="#">Sam Hunt</a>
+        <a href="#">Sam Smith</a>
+        <a href="#">Sammy Hagar</a>
+        <a href="#">Sandy Denny</a>
+        <a href="#">Schiller</a>
+        <a href="#">Scorpions</a>
+        <a href="#">Scott Walker</a>
+        <a href="#">Secret Garden</a>
+        <a href="#">Selena Gomez</a>
+        <a href="#">Sensational Alex Harvey Band</a>
+        <a href="#">Serge Gainsbourg</a>
+        <a href="#">Sergio Mendes</a>
+        <a href="#">Sex Pistols</a>
+        <a href="#">Shaggy</a>
+        <a href="#">Sham 69</a>
+        <a href="#">Shania Twain</a>
+        <a href="#">Sheryl Crow</a>
+        <a href="#">Simple Minds</a>
+        <a href="#">Siouxsie & The Banshees</a>
+        <a href="#">Slayer</a>
+        <a href="#">Slick Rick</a>
+        <a href="#">Sly & Robbie</a>
+        <a href="#">Small Faces</a>
+        <a href="#">The Smashing Pumpkins</a>
+        <a href="#">Smokey Robinson</a>
+        <a href="#">Smokey Robinson & The Miracles</a>
+        <a href="#">Snoop Dogg</a>
+        <a href="#">Snow Patrol</a>
+        <a href="#">Soft Cell</a>
+        <a href="#">Sonic Youth</a>
+        <a href="#">Sonny Boy Williamson</a>
+        <a href="#">Soul II Soul</a>
+        <a href="#">Soundgarden</a>
+        <a href="#">Spandau Ballet</a>
+        <a href="#">Sparks</a>
+        <a href="#">Spice Girls</a>
+        <a href="#">Stan Getz</a>
+        <a href="#">The Statler Brothers</a>
+        <a href="#">Status Quo</a>
+        <a href="#">Steel Pulse</a>
+        <a href="#">Steely Dan</a>
+        <a href="#">Steppenwolf</a>
+        <a href="#">Stereo MCs</a>
+        <a href="#">Stereophonics</a>
+        <a href="#">Steve Hackett</a>
+        <a href="#">Steve Earle</a>
+        <a href="#">Steve Hillage</a>
+        <a href="#">Steve Miller Band</a>
+        <a href="#">Steve Winwood</a>
+        <a href="#">Steven Tyler</a>
+        <a href="#">Stevie Wonder</a>
+        <a href="#">Sting</a>
+        <a href="#">The Style Council</a>
+        <a href="#">Styx</a>
+        <a href="#">Sublime</a>
+        <a href="#">Sum 41</a>
+        <a href="#">Supertramp</a>
+        <a href="#">Suzanne Vega</a>
+        <a href="#">T-Bone Walker</a>
+        <a href="#">T. Rex</a>
+        <a href="#">Take That</a>
+        <a href="#">Tangerine Dream</a>
+        <a href="#">Taylor Swift</a>
+        <a href="#">Tears For Fears</a>
+        <a href="#">Teena Marie</a>
+        <a href="#">Temple Of The Dog</a>
+        <a href="#">The Temptations</a>
+        <a href="#">Tesla</a>
+        <a href="#">Texas</a>
+        <a href="#">Thelma Houston</a>
+        <a href="#">Thelonious Monk</a>
+        <a href="#">Thin Lizzy</a>
+        <a href="#">Thomas Rhett</a>
+        <a href="#">Three Dog Night</a>
+        <a href="#">Tim McGraw</a>
+        <a href="#">Toby Keith</a>
+        <a href="#">Tom Jones</a>
+        <a href="#">Tom Petty</a>
+        <a href="#">Tom Waits</a>
+        <a href="#">Toots & The Maytals</a>
+        <a href="#">Tori Amos</a>
+        <a href="#">Traffic</a>
+        <a href="#">The Tragically Hip</a>
+        <a href="#">Traveling Wilburys</a>
+        <a href="#">The Tubes</a>
+        <a href="#">U2</a>
+        <a href="#">UB40</a>
+        <a href="#">Ultravox</a>
+        <a href="#">Underworld</a>
+        <a href="#">Van der Graaf Generator</a>
+        <a href="#">Vangelis</a>
+        <a href="#">The Velvet Underground</a>
+        <a href="#">The Verve</a>
+        <a href="#">Vince Gill</a>
+        <a href="#">The Walker Brothers</a>
+        <a href="#">The Weeknd</a>
+        <a href="#">Weezer</a>
+        <a href="#">Wes Montgomery</a>
+        <a href="#">Wet Wet Wet</a>
+        <a href="#">will.i.am</a>
+        <a href="#">Whitesnake</a>
+        <a href="#">The Who</a>
+        <a href="#">William Orbit</a>
+        <a href="#">Willie Nelson</a>
+        <a href="#">Wilson Pickett</a>
+        <a href="#">Wishbone Ash</a>
+        <a href="#">Wolfmother</a>
+        <a href="#">Yeah Yeah Yeahs</a>
+        <a href="#">Yello</a>
+        <a href="#">Yes</a>
+        <a href="#">Zucchero</a>
+      </div>
+      <lord-icon
+        class="search-icon"
+        src="https://cdn.lordicon.com/jtkfemwz.json"
+        trigger="hover"
+        style="width: 25px; height: 25px;">
+      </lord-icon>
+    </div>
+    </div>
+    <div class="Home"><a href ="meowmeow.html">Home</div></a> <!-- Add the home text -->
+    <div class="inner-rectangle">
+    </div>
+    <div class="inner-rectangle2"></div>
+  </div>
+  
+  <div class="rectangle3">
+    <div class="audio-player">
+      <audio id="music" src="sound.mp3"></audio>
+      <button class="playbutton" id="playbutton">Play</button>
+      <div class="progress_bar" id="progress_bar">
+          <div class="progressed" id="progressed"></div>
+      </div>
+  </div>
+    
+  </div>
+
+  <script>
+      var music = document.getElementById('music');
+var playbutton = document.getElementById('playbutton');
+var progressed = document.getElementById('progressed');
+var progress_bar = document.getElementById('progress_bar');
+
+music.ontimeupdate = function (e) {
+    progressed.style.width = Math.floor(music.currentTime*100/music.duration)+"%";
+}
+
+playbutton.onclick = function () {
+    if (music.paused) {
+        music.play();
+        playbutton.textContent = "Pause"; // Change button text to "Pause"
+    } else {
+        music.pause();
+        playbutton.textContent = "Play"; // Change button text to "Play"
+    }
+};
+
+
+progress_bar.onclick = function (e) {
+    music.currentTime = ((e.offsetX/progress_bar.offsetWidth) * music.duration);
+}
+
+  </script>
+  </div>
+
+  <div class="rectangle2">
+    <div class="welcome-text">Welcome Back AlphaPack_008</div>
+    <img class="picture" src="original.jpg" alt="Your Image">
+    </div>
+  </div>
+  
+</body>
+</html>
